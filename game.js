@@ -25,7 +25,7 @@ function getComputerChoice() {
 */
 function playRound(playerSelection, computerSelection) {
   // Variable declaration to store return string
-  let declaration;
+  let declaration = "";
   // Stores playerSelection as a lower case string
   playerSelection = playerSelection.toLowerCase();
 
