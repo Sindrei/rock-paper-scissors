@@ -19,11 +19,11 @@ function getComputerChoice() {
   return play;
 }
 
-/*  func startRound (playerSelection, computerSelection)
+/*  function playRound (playerSelection, computerSelection)
     This function uses input from the player and the computer to simulate a
     round of rock paper scissors and returns the result of the round.
 */
-function startRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   // Variable declaration to store return string
   let declaration;
   // Stores playerSelection as a lower case string
@@ -55,7 +55,12 @@ function startRound(playerSelection, computerSelection) {
   return declaration;
 }
 
-const playerMove = prompt(
-  "Please enter rock, paper or scissors to choose your move:"
-);
-console.log(startRound(playerMove, getComputerChoice()));
+//  function game() starts a rock, papers, scissors game of 5 rounds
+function game() {}
+// loop executing playRound() 5 times to simulate a 5 round game
+for (let i = 0; i < 5; i++) {
+  const getPlayerChoice = prompt(
+    "Please enter rock, paper or scissors to choose your move:"
+  );
+  console.log(playRound(getPlayerChoice, getComputerChoice()));
+}
