@@ -56,11 +56,14 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //  function game() starts a rock, papers, scissors game of 5 rounds
-function game() {}
-// loop executing playRound() 5 times to simulate a 5 round game
-for (let i = 0; i < 5; i++) {
-  const getPlayerChoice = prompt(
-    "Please enter rock, paper or scissors to choose your move:"
-  );
-  console.log(playRound(getPlayerChoice, getComputerChoice()));
+function game() {
+  // loop executing playRound() 5 times to simulate a 5 round game
+  for (let i = 0; i < 5; i++) {
+    const getPlayerChoice = prompt(
+      "Please enter rock, paper or scissors to choose your move:"
+    );
+    console.log(playRound(getPlayerChoice, getComputerChoice()));
+  }
 }
+
+game();
