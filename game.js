@@ -7,14 +7,13 @@ function getComputerChoice() {
   const compChoice = Math.floor(Math.random() * 3);
   // Variable let play to store return string
   let play;
-
   // 0 = Rock, 1 = Paper, 2 = Scissors
   if (compChoice === 0) {
-    play = "rock";
+    play = "Rock";
   } else if (compChoice === 1) {
-    play = "paper";
+    play = "Paper";
   } else if (compChoice === 2) {
-    play = "scissors";
+    play = "Scissors";
   }
   return play;
 }
@@ -26,44 +25,69 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   // Variable declaration to store return string
   let declaration = "";
-  // Stores playerSelection as a lower case string
-  playerSelection = playerSelection.toLowerCase();
 
   // Compares playerSelection vs computerSelection to determine the round
   // if playerSelection is the same as computerSelection
   if (
-    (playerSelection === "rock" && computerSelection === "rock") ||
-    (playerSelection === "paper" && computerSelection === "paper") ||
-    (playerSelection === "scissors" && computerSelection === "scissors")
+    (playerSelection === "Rock" && computerSelection === "Rock") ||
+    (playerSelection === "Paper" && computerSelection === "Paper") ||
+    (playerSelection === "Scissors" && computerSelection === "Scissors")
   ) {
-    declaration = `It's a draw! ${playerSelection} draws ${computerSelection}`;
+    declaration = `It's a draw! ${playerSelection} draws ${computerSelection}.`;
     // if playerSelection beats computerSelection
   } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "scissors" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "rock")
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper") ||
+    (playerSelection === "Paper" && computerSelection === "Rock")
   ) {
-    declaration = `You Win! ${playerSelection} beats ${computerSelection}`;
+    declaration = `You Win! ${playerSelection} beats ${computerSelection}.`;
+    playerScore += 1;
     // if computerSelection beats playerSelection
   } else if (
-    (playerSelection === "paper" && computerSelection === "scissors") ||
-    (playerSelection === "rock" && computerSelection === "paper") ||
-    (playerSelection === "scissors" && computerSelection === "rock")
+    (playerSelection === "Paper" && computerSelection === "Scissors") ||
+    (playerSelection === "Rock" && computerSelection === "Paper") ||
+    (playerSelection === "Scissors" && computerSelection === "Rock")
   ) {
-    declaration = `You lose! ${computerSelection} beats ${playerSelection}`;
+    declaration = `You lose! ${computerSelection} beats ${playerSelection}.`;
+    computerScore += 1;
   }
   return declaration;
+}
+
+function getScore() {
+  return `Player: ${playerScore} Computer: ${computerScore}`;
 }
 
 //  function game() starts a rock, papers, scissors game of 5 rounds
 function game() {
   // loop executing playRound() 5 times to simulate a 5 round game
-  for (let i = 0; i < 5; i++) {
-    const getPlayerChoice = prompt(
-      "Please enter rock, paper or scissors to choose your move:"
-    );
-    console.log(playRound(getPlayerChoice, getComputerChoice()));
-  }
+  for (let i = 0; i < 5; i++) {}
+  const getPlayerChoice = prompt(
+    "Please enter rock, paper or scissors to choose your move:"
+  );
+  console.log(playRound(getPlayerChoice, getComputerChoice()));
 }
 
-game();
+let playerScore = 0;
+let computerScore = 0;
+
+const buttonRock = document.querySelector("#rock");
+const buttonPaper = document.querySelector("#paper");
+const buttonScissors = document.querySelector("#scissors");
+const output = document.querySelector(".result");
+const score = document.querySelector(".score");
+
+buttonRock.addEventListener("click", () => {
+  output.textContent = playRound("Rock", getComputerChoice());
+  score.textContent = getScore();
+});
+
+buttonPaper.addEventListener("click", () => {
+  output.textContent = playRound("Paper", getComputerChoice());
+  score.textContent = getScore();
+});
+
+buttonScissors.addEventListener("click", () => {
+  output.textContent = playRound("Scissors", getComputerChoice());
+  score.textContent = getScore();
+});
