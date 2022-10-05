@@ -58,16 +58,6 @@ function getScore() {
   return `Player: ${playerScore} Computer: ${computerScore}`;
 }
 
-//  function game() starts a rock, papers, scissors game of 5 rounds
-function game() {
-  // loop executing playRound() 5 times to simulate a 5 round game
-  for (let i = 0; i < 5; i++) {}
-  const getPlayerChoice = prompt(
-    "Please enter rock, paper or scissors to choose your move:"
-  );
-  console.log(playRound(getPlayerChoice, getComputerChoice()));
-}
-
 let playerScore = 0;
 let computerScore = 0;
 
@@ -80,14 +70,39 @@ const score = document.querySelector(".score");
 buttonRock.addEventListener("click", () => {
   output.textContent = playRound("Rock", getComputerChoice());
   score.textContent = getScore();
+  checkWinner();
 });
 
 buttonPaper.addEventListener("click", () => {
   output.textContent = playRound("Paper", getComputerChoice());
   score.textContent = getScore();
+  checkWinner();
 });
 
 buttonScissors.addEventListener("click", () => {
   output.textContent = playRound("Scissors", getComputerChoice());
   score.textContent = getScore();
+  checkWinner();
 });
+
+function disableButtons() {
+  const gameButtons = document.querySelectorAll(".game-button");
+  for (let i = 0; i < gameButtons.length; i++) {
+    gameButtons[i].disabled = true;
+  }
+}
+
+function checkWinner() {
+  const winner = document.createElement("div");
+  const body = document.querySelector("body");
+
+  if (playerScore === 5) {
+    winner.textContent = "The Player has Won the game!";
+    body.appendChild(winner);
+    disableButtons();
+  } else if (computerScore === 5) {
+    winner.textContent = "The Computer has Won the game!";
+    body.appendChild(winner);
+    disableButtons();
+  }
+}
